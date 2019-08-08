@@ -6,7 +6,9 @@ import edu.mum.cs.cs425.exercise.banking.bankingapp.repository.CustomerRepositor
 import edu.mum.cs.cs425.exercise.banking.bankingapp.service.AccountService;
 import edu.mum.cs.cs425.exercise.banking.bankingapp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
