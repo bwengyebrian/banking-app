@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/master-layout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    <!-- Small chart Start-->
+    <div class="sparkline-area">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12">
+                    <div class="sparkline-list">
+                        <div class="smart-sparkline-hd">
+                            <div class="smart-main-spark-hd">
+                                <h1>All Available Customers</h1>
+                            </div>
+                        </div>
+                        <div class="smart-sparkline-list">
+                            <table class="table table-bordered table-edu">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Customer No</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Address</th>
+                                    <th>Phone</th>
+                                    <th>Date Of Birth</th>
+                                    <th>Account</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="customer,iterStat: ${customers}">
+                                    <td th:text="${iterStat.count}"></td>
+                                    <td th:text="${customer.customerNumber}"></td>
+                                    <td th:text="${customer.firstName}"></td>
+                                    <td th:text="${customer.middleName}"></td>
+                                    <td th:text="${customer.lastName}"></td>
+                                    <td th:text="${customer.emailAddress}"></td>
+                                    <td th:text="${customer.contactPhoneNumber}"></td>
+                                    <td th:text="${customer.dateOfBirth}"></td>
+                                    <td><a th:href="@{'/bankingapp/customer/accounts/{customerId}'(customerId=${customer.customerId})}" title="Customer Accounts" class="btn btn-primary" href="">Accounts</a></td>
+                                    <td>
+                                        <a th:href="@{'/bankingapp/customer/edit/{customerId}'(customerId=${customer.customerId})}" title="Edit Customer Details" class="btn btn-default" >Edit</a>
+                                        <a th:href="@{'/bankingapp/customer/list?='+${customer.customerId}}" title="Delete Customer" class="btn btn-danger" onclick="if (! confirm('Are You sure You want to Delete Customer?')) { return false; }">Delete</a>
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Small chart end-->
+
+</div>
+
+</body>
+</html>

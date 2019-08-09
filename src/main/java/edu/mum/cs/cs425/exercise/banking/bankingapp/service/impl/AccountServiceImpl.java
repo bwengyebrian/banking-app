@@ -5,6 +5,7 @@ import edu.mum.cs.cs425.exercise.banking.bankingapp.model.Customer;
 import edu.mum.cs.cs425.exercise.banking.bankingapp.repository.AccountRepository;
 import edu.mum.cs.cs425.exercise.banking.bankingapp.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Iterable<Account> getAccounts() {
-        return accountRepository.findAll();
+        return accountRepository.findAll(Sort.by("accountNumber").ascending());
     }
 
     @Override

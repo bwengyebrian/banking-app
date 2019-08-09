@@ -10,17 +10,18 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long accountId;
-    @NotBlank(message = "Ivalid Account Number")
+    @NotNull(message = "Ivalid Account Number")
     private Long accountNumber;
-    @NotBlank(message = "Ivalid balance")
+    @NotNull(message = "Ivalid balance")
     private Double balance;
 
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id",nullable = true )
     private Customer customer;
 
-    @NotNull(message = "Account Type not Set")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name =  "account_type_id")
     private AccountType accountType;
 
     public Account() {

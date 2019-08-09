@@ -16,12 +16,13 @@ import java.util.List;
 
 @Controller
 public class CustomerController {
+    @Autowired
     private CustomerService customerService;
 
-    @GetMapping(value = {"/bankingapp/customers/list","bankingapp/customers/list"})
+    @GetMapping(value = {"/bankingapp/customer/list","bankingapp/customers/list"})
     public String listCustomers(Model model){
-        model.addAttribute("",customerService.getAllCustomers());
-        return  "customer/list";
+        model.addAttribute("customers",customerService.getAllCustomers());
+        return  "customer/list-customer";
     }
 
     @GetMapping(value = {"/bankingapp/customer/new","bankingapp/customer/new"})

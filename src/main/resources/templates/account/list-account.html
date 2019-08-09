@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/master-layout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    <!-- Small chart Start-->
+    <div class="sparkline-area">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12">
+                    <div class="sparkline-list">
+                        <div class="smart-sparkline-hd">
+                            <div class="smart-main-spark-hd">
+                                <h1>All Available Accounts</h1>
+                            </div>
+                        </div>
+                        <div class="smart-sparkline-list">
+                            <table class="table table-bordered table-edu">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Account No</th>
+                                    <th>Account Type</th>
+                                    <th>Account Balance</th>
+                                    <th>Cuctomer</th>
+
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="account,iterStat: ${accounts}">
+                                    <td th:text="${iterStat.count}"></td>
+                                    <td th:text="${account.accountNumber}"></td>
+                                    <td th:text="${account.accountType.accountTypeName}"></td>
+                                    <td th:text="${account.balance}"></td>
+                                    <td th:text="${account.customer.customerNumber} + ' - ' + ${account.customer.firstName} + ' ' + ${account.customer.middleName} + ' ' +  ${account.customer.lastName} "></td>
+
+
+                                    <td>
+                                        <a th:href="@{'/bankingapp/account/edit/{accountId}'(accountId=${account.accountId})}" title="Edit Account Details" class="btn btn-default" >Edit</a>
+                                        <a th:href="@{'/bankingapp/account/list?='+${account.accountId}}" title="Delete Account" class="btn btn-danger" onclick="if (! confirm('Are You sure You want to Delete Account?')) { return false; }">Delete</a>
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Small chart end-->
+
+</div>
+
+</body>
+</html>
